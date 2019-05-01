@@ -1,0 +1,60 @@
+﻿@model Midterm_guestbook.Models.Tag
+
+@{
+    ViewData["Title"] = "首頁";
+}
+
+<h1 class="text-center">留言板清單</h1>
+
+<p class="float-lg-right form-sm-inline">
+    <a class="form-control btn btn-info" role="button" asp-action="Create">新增留言</a>
+</p>
+
+<form class="form-inline" asp-controller="Guestbooks" asp-action="Index" method="get">
+    <select class="form-control mb-2 mr-sm-2" asp-for="GuestbookTags" asp-items="Model.Tags" id="str_tags" name="str_tags">
+        <option value="">All</option>
+    </select>
+
+    <label class="mb-2 mr-sm-2" for="str_search">Keyword:</label>
+    <input class="form-control mb-2 mr-sm-2" type="text" id="str_search" name="str_search" />
+    <input class="mb-2 form-control btn btn-primary" type="submit" value="搜尋" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Guestbooks[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Guestbooks[0].Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Guestbooks[0].Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Guestbooks) {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Title)
+                     </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tag)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">編輯</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">刪除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

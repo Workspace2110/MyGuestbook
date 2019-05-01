@@ -1,0 +1,39 @@
+﻿@model Midterm_guestbook.Models.Guestbook
+
+@{
+    ViewData["Title"] = "留言內容";
+}
+
+<div class="card">
+    <div class="card-header text-center bg-dark text-white">
+        <h1 class="text-left">
+            @Html.DisplayNameFor(model => model.Title):
+            @Html.DisplayFor(model => model.Title)
+        </h1>
+    </div>
+    <div class="card-body">
+        <div class="container">
+            <div class="card-title">
+                <h4>
+                    @Html.DisplayNameFor(model => model.Tag): 
+                    @Html.DisplayFor(model => model.Tag)
+                </h4>
+            </div>
+
+            <h4>@Html.DisplayNameFor(model => model.Comment):</h4>
+            <div class="card-text container">
+                <pre class="" style="font-size:20px">@Html.DisplayFor(model => model.Comment)</pre>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-dark text-white">
+        <h4 class="text-right">
+            @Html.DisplayFor(model => model.Date)
+        </h4>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">編輯</a> |
+    <a asp-action="Index">返回清單</a>
+</div>
